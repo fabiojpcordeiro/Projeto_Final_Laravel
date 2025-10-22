@@ -13,6 +13,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('candidate_id')->constrained()->onDelete('cascade');
             $table->foreignId('job_offers_id')->constrained()->onDelete('cascade');
+            $table->enum('status', ['applied', 'interview', 'approved', 'rejected'])->default('applied');
             $table->timestamps();
             $table->unique(['candidate_id', 'job_offers_id']);
         });

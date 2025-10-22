@@ -10,12 +10,15 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('company_email')->unique();
-            $table->string('city');
-            $table->string('sector');
+            $table->string('name', 100)->unique();
+            $table->string('public_email', 100)->unique();
+            $table->string('state', 2);
+            $table->string('city', 150);
+            $table->string('sector', 100)->nullable();
             $table->text('about')->nullable();
-            $table->decimal('rating', 3, 2)->nullable();
+            $table->unsignedInteger('review_count')->default(0);
+            $table->decimal('review_sum', 8, 2)->default(0);
+            $table->decimal('rating', 3, 2)->default(0);
             $table->timestamps();
         });
     }

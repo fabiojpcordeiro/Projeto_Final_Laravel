@@ -11,13 +11,18 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('bio');
-            $table->string('profile_photo');
+            $table->string('email', 100)->unique();
+            $table->string('password', 200);
+            $table->string('state', 2);
+            $table->string('city', 150);
+            $table->text('bio')->nullable();
+            $table->string('profile_photo', 200)->nullable();
+            $table->unsignedInteger('review_count')->default(0);
+            $table->decimal('review_sum', 8, 2)->default(0);
+            $table->decimal('rating', 3, 2)->default(0);
             $table->timestamps();
         });
     }
-
 
     public function down(): void
     {

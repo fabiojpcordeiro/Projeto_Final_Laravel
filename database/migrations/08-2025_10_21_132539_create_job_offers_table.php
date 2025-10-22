@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('job_offers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->string('title',100);
             $table->text('description');
-            $table->string('city');
-            $table->string('sector')->nullable();
+            $table->string('city', 150);    
+            $table->string('sector', 100)->nullable();
             $table->decimal('salary', 10, 2)->nullable();
             $table->boolean('is_temporary')->default(true);
             $table->timestamps();
