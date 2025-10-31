@@ -12,10 +12,11 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100)->unique();
             $table->string('public_email', 100)->unique();
-            $table->string('state', 2);
+            $table->string('state', 100);
             $table->string('city', 150);
             $table->string('sector', 100)->nullable();
             $table->text('about')->nullable();
+            $table->string('logo')->nullable();
             $table->unsignedInteger('review_count')->default(0);
             $table->decimal('review_sum', 8, 2)->default(0);
             $table->decimal('rating', 3, 2)->default(0);

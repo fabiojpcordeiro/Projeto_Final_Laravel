@@ -8,10 +8,12 @@ class Company extends Model
 {
     protected $fillable = [
         'name',
-        'company_email',
+        'public_email',
         'city',
+        'state',
         'sector',
-        'about'
+        'about',
+        'logo'
     ];
 
     public function users()

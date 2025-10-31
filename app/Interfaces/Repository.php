@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Interfaces;
+
+interface Repository
+{
+    public function store(array $data);
+    public function show(string $id);
+    public function update(string $id, array $data);
+    public function destroy(string $id);
+}
