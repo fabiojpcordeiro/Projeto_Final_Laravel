@@ -75,16 +75,20 @@ namespace App\Models{
  * @property string $public_email
  * @property string $state
  * @property string $city
+ * @property string $street
+ * @property string $number
  * @property string|null $sector
  * @property string|null $about
+ * @property string|null $logo
  * @property int $review_count
  * @property string $review_sum
  * @property string $rating
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $logo
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobOffer> $jobs
  * @property-read int|null $jobs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CompanyReview> $reviews
+ * @property-read int|null $reviews_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company newModelQuery()
@@ -96,15 +100,60 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereLogo($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company wherePublicEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereReviewCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereReviewSum($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereSector($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereStreet($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereUpdatedAt($value)
  */
 	class Company extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property int $company_id
+ * @property int $user_id
+ * @property int $rating
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Company $company
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview whereCompanyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CompanyReview whereUserId($value)
+ */
+	class CompanyReview extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property int $job_offer_id
+ * @property \Illuminate\Support\Carbon $work_date
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\JobOffer $jobOffer
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates whereJobOfferId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobDates whereWorkDate($value)
+ */
+	class JobDates extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -119,9 +168,12 @@ namespace App\Models{
  * @property int $is_temporary
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon $open_until
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Candidate> $applicants
  * @property-read int|null $applicants_count
  * @property-read \App\Models\Company $company
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobDates> $dates
+ * @property-read int|null $dates_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer query()
@@ -131,6 +183,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer whereIsTemporary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer whereOpenUntil($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer whereSalary($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer whereSector($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobOffer whereTitle($value)

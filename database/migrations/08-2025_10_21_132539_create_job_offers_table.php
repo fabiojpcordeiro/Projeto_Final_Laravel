@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('city', 150);    
             $table->string('sector', 100)->nullable();
             $table->decimal('salary', 10, 2)->nullable();
+            $table->date('open_until');
             $table->boolean('is_temporary')->default(true);
             $table->timestamps();
         });

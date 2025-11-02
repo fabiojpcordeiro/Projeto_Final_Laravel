@@ -31,15 +31,17 @@
             </form>
         </div>
         {{-- Links --}}
-        <div class="flex gap-20 h-20 items-center text-xl">
-            <a href="">Minhas Vagas</a>
-            <a href="">Empresa</a>
-        </div>
+        @if (Auth::user()->company)
+            <div class="flex gap-20 h-20 items-center text-xl">
+                <a href="{{ route('job-offers.index') }}">Minhas Vagas</a>
+                <a href="{{ route('company.show', Auth::user()->company) }}">Empresa</a>
+            </div>
+        @endif
         {{-- Profile --}}
         <div>
-            <a href="#" class="h-full w-16 mx-10 flex items-center font-semibold">
+            <a href="{{ route('profile') }}" class="h-full w-16 mx-10 flex items-center font-semibold">
                 <img src="{{ asset('images/icons/user.svg') }}" alt="Profile picture">
-                <p>Nome</p>
+                <p>{{ auth()->user()->name }}</p>
             </a>
         </div>
         {{-- Logout --}}
@@ -50,10 +52,24 @@
             </form>
         </div>
     </nav>
-    @yield('content')
-    {{-- Social Media --}}
-    <footer class="w-full h-15 pt-52 text-white bg-black">
-        <p>/name/ &copy; Todos os direitos reservados.</p>
-    </footer>
-    @livewireScripts()
+    </div>
+    <div class="mt-24">
+        <div class="messages">
+            @if (session('success'))
+                <p>
+                    {{ session('success') }}
+                </p>
+            @endif
+            @if (session('error'))
+                <p>
+                    {{ session('error') }}
+                </p>
+            @endif
+            @yield('content')
+        </div>
+        {{-- Social Media --}}
+        <footer class="w-full h-15 pt-52 text-white bg-black">
+            <p>/name/ &copy; Todos os direitos reservados.</p>
+        </footer>
+        @livewireScripts()
 </body>

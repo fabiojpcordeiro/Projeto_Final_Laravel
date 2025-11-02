@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class JobOffer extends Model
@@ -13,6 +14,7 @@ class JobOffer extends Model
         'city',
         'sector',
         'salary',
+        'open_until',
         'is_temporary'
     ];
 
@@ -27,4 +29,17 @@ class JobOffer extends Model
             ->withPivot('status')
             ->withTimestamps();
     }
+    public function dates(){
+        return $this->hasMany(JobDates::class, 'job_offer_id', 'id');
+    }
+
+    public function formattedDates() :array
+    {
+        return $this->dates
+        ->pluck('date')
+        ->map(fn($date)=>Carbon::parse($date)->format('Y-m-d'))
+        ->toArray();
+    }
+
+    protected $casts = ['open_until'=>'date'];
 }

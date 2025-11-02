@@ -23,9 +23,12 @@ class CreateCompanyRequest extends FormRequest
             'public_email' => 'required|max:100|unique:companies,public_email',
             'state' => 'required|string|size:2',
             'city' => 'required|string|min:2|max:150',
+            'street'=> 'required|string|max:100',
+            'number' => 'required|string|max:8',
             'sector' => 'nullable|string|min:2|max:100',
-            'about' => 'nullable|string'
-        ]; 
+            'about' => 'nullable|string|max:3000',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+            ]; 
     }
     public function messages(): array
     {
@@ -46,8 +49,22 @@ class CreateCompanyRequest extends FormRequest
             'city.min' => 'A cidade deve ter no mínimo :min caracteres.',
             'city.max' => 'A cidade deve ter no máximo :max caracteres.',
 
+            'street.required' => 'O campo Rua é obrigatório.',
+            'street.string' => 'O campo Rua deve ser um texto válido.',
+            'street.max' => 'O campo Rua não pode ter mais de :max caracteres.',
+
+            'number.required' => 'O campo Número é obrigatório.',
+            'number.string' => 'O campo Número deve ser um texto válido.',
+            'number.max' => 'O campo Número não pode ter mais de :max caracteres.',
+
             'sector.min' => 'O setor deve ter no mínimo :min caracteres.',
-            'sector.max' => 'O setor deve ter no máximo :max caracteres.'
+            'sector.max' => 'O setor deve ter no máximo :max caracteres.',
+
+            'about'=> 'nullable|string|',
+
+            'logo.image' => 'O arquivo do Logo deve ser uma imagem.',
+            'logo.mimes' => 'O Logo deve ser do tipo: jpeg, png, jpg, gif ou webp.',
+            'logo.max' => 'O Logo não pode ter mais de :max.'
         ];
     }
 }

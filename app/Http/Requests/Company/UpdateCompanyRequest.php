@@ -31,6 +31,8 @@ class UpdateCompanyRequest extends FormRequest
             ],
             'state' => 'sometimes|string|size:2',
             'city' => 'sometimes|string|min:2|max:150',
+            'street'=> 'sometimes|string|max:100',
+            'number' => 'sometimes|string|max:8',
             'sector' => 'nullable|string|min:2|max:100',
             'about' => 'nullable|string'
         ];
@@ -50,6 +52,12 @@ class UpdateCompanyRequest extends FormRequest
 
             'city.min' => 'A cidade deve ter no mínimo :min caracteres.',
             'city.max' => 'A cidade deve ter no máximo :max caracteres.',
+
+            'street.string' => 'O campo Rua deve ser um texto válido.',
+            'street.max' => 'O campo Rua não pode ter mais de :max caracteres.',
+
+            'number.string' => 'O campo Número deve ser um texto válido.',
+            'number.max' => 'O campo Número não pode ter mais de 8 caracteres.',
 
             'sector.min' => 'O setor deve ter no mínimo :min caracteres.',
             'sector.max' => 'O setor deve ter no máximo :max caracteres.'

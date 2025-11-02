@@ -9,11 +9,13 @@ class Company extends Model
     protected $fillable = [
         'name',
         'public_email',
-        'city',
         'state',
+        'city',
+        'street',
+        'number',
         'sector',
         'about',
-        'logo'
+        'logo',
     ];
 
     public function users()
@@ -23,5 +25,11 @@ class Company extends Model
     public function jobs()
     {
         return $this->hasMany(JobOffer::class, 'company_id', 'id');
+    }
+    public function reviews(){
+        return $this->hasMany(CompanyReview::class);
+    }
+    public function getCity(){
+        return $this->belongsTo(City::class, 'city', 'id');
     }
 }

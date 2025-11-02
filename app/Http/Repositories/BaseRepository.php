@@ -21,8 +21,7 @@ abstract class BaseRepository implements Repository
     public function show(string $id){
         return $this->model->findOrFail($id);
     }
-    public function update(string $id, array $data){
-        $object = $this->show($id);
+    public function update($object , array $data){
         $object->update($data);
         return $object->fresh();
     }

@@ -14,6 +14,8 @@ return new class extends Migration
             $table->string('public_email', 100)->unique();
             $table->string('state', 100);
             $table->string('city', 150);
+            $table->string('street', 150);
+            $table->string('number', 4);
             $table->string('sector', 100)->nullable();
             $table->text('about')->nullable();
             $table->string('logo')->nullable();

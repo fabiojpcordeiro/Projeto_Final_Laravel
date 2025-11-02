@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests as AccessAuthorizesRequests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Company\CompanyReviewRequest;
 use App\Http\Requests\Company\CreateCompanyRequest;
 use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Http\Services\CompanyService;
@@ -18,25 +19,26 @@ class CompanyController extends Controller
     {
         $this->service = $service;
     }
-    
+
     public function create()
-    {  
+    {
         $this->authorize('create', Company::class);
-        return view('company.create_company');
+        return view('company.create');
     }
 
     public function storeCompany(CreateCompanyRequest $request)
     {
         $this->authorize('create', Company::class);
-        $this->service->storeCompany($request->validated(), Auth::user());
+        $data = $request->validated();
+        $this->service->storeCompany($data, Auth::user(), $request->file('logo'));
         return redirect()->route('dashboard')->with('success', 'Empresa criada com sucesso.');
     }
 
     public function show(string $id)
-    {      
+    {
         $company = $this->service->show($id);
         $this->authorize('view', $company);
-        return $company;
+        return view('company.show', compact('company'));
     }
 
     public function edit(string $id)
@@ -47,7 +49,7 @@ class CompanyController extends Controller
     }
 
     public function update(UpdateCompanyRequest $request, string $id)
-    {   
+    {
         $company = $this->service->show($id);
         $this->authorize('update', $company);
         $this->service->update($id, $request->validated());
@@ -57,7 +59,7 @@ class CompanyController extends Controller
     public function destroy(string $id)
     {
         $company = $this->service->show($id);
-        $this->authorize('destroy', $company);
+        $this->authorize('delete', $company);
         $this->service->destroy($id);
         return redirect()->route('dashboard')->with('success', 'A empresa foi deletada com sucesso.');
     }

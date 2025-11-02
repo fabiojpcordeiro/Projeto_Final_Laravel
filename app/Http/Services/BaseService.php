@@ -19,11 +19,8 @@ abstract class BaseService implements Service
     public function show(string $id){
         return $this->repository->show($id);
     }
-    public function update(string $id, array $data){
-        return $this->repository->update($id, $data);
-    }
-    public function store(array $data){
-        return $this->repository->store($data);
+    public function update($object, array $data){
+        return $this->repository->update($object, $data);
     }
     public function destroy(string $id){
         return $this->repository->destroy($id);

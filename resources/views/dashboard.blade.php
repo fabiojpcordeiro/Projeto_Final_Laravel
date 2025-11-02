@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="pt-24">
+    <div>
         @if (session('error'))
         <p class="alert alert-danger">
             {{ session('error') }}
