@@ -48,11 +48,10 @@ class CompanyController extends Controller
         return view('company.edit', compact('company'));
     }
 
-    public function update(UpdateCompanyRequest $request, string $id)
+    public function update(UpdateCompanyRequest $request, Company $company)
     {
-        $company = $this->service->show($id);
         $this->authorize('update', $company);
-        $this->service->update($id, $request->validated());
+        $this->service->update($company, $request->validated());
         return redirect()->route('dashboard')->with('success', 'Empresa atualizada com sucesso.');
     }
 

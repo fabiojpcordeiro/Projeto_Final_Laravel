@@ -43,8 +43,8 @@ class JobOfferService extends BaseService
     public function getOffers(string $company_id){
         return $this->job_repository->getOffers($company_id);
     }
-    public function viewOffer(string $job_id){
-        return $this->job_repository->viewOffer($job_id);
+    public function viewOffer($job_offer){
+        return $this->job_repository->viewOffer($job_offer);
     }
     public function update($job, $data){
         $jobOffer = $this->job_repository->update($job, 

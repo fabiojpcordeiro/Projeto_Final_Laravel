@@ -1,14 +1,14 @@
 @extends('layouts.main')
 @section('content')
-    <div>
-        <h2>Edite sua vaga</h2>
-        <div>
+    <div class="section">
+        <h2 class="section-title">Edite sua vaga</h2>
+        <div">
             <x-my_components.job-offer-form 
-            :action="route('job-offers.update', $job)" 
+            :action="route('job-offers.update', $job_offer)" 
             method="PUT" 
             :company="$company" 
-            :job="$job">
-                </x-job-offer-form>
+            :job_offer="$job_offer">
+            </x-job-offer-form>
         </div>
     </div>
 @endsection

@@ -14,7 +14,7 @@ class CompanyPolicy
 
     public function view(User $user, Company $company): bool
     {
-        return true;
+        return $user->company_id === $company->id;
     }
 
     public function create(User $user): bool
