@@ -21,5 +21,9 @@ export default {
         'hover:bg-blue-500', 'hover:text-white',
         'border-blue-500', 'border-white'
     ],
-    plugins: [forms],
+    //plugins: [forms],
+    plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss-animate'),
+    ],
 };

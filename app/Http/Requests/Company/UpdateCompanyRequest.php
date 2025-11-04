@@ -42,10 +42,8 @@ class UpdateCompanyRequest extends FormRequest
         return [
             'name.min' => 'O nome deve ter no mínimo :min caracteres.',
             'name.max' => 'O nome deve ter no máximo :max caracteres.',
-            'name.unique' => 'Já existe uma empresa com este nome.',
 
             'public_email.email' => 'O email informado não é válido.',
-            'public_email.unique' => 'Este email já está cadastrado.',
             'public_email.max' => 'O email deve ter no máximo :max caracteres.',
 
             'state.size' => 'O estado deve ter exatamente :size caracteres.',

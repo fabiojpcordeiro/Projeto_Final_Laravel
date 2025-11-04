@@ -32,11 +32,11 @@ class JobOfferController extends Controller
         return back()->with('success', 'Vaga criada com sucesso!');
     }
 
-    public function edit(string $id)
+    public function edit(JobOffer $job_offer)
     {
         $company = Auth::user()->company;
-        $job = $this->service->viewOffer($id);
-        return view('jobs.edit', compact('job', 'company'));
+        $job = $this->service->viewOffer($job_offer);
+        return view('jobs.edit', compact('job_offer', 'company'));
     }
     public function update(UpdateJobOfferRequest $request, JobOffer $job_offer){
         $this->service->update($job_offer, $request->validated());

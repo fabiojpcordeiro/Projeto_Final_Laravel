@@ -1,2 +1,3 @@
-<p>view de edição</p>
-@dd($company)
+<div class="section">
+    Editar empresa
+</div>
