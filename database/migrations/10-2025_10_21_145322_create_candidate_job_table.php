@@ -11,11 +11,13 @@ return new class extends Migration
     {
         Schema::create('candidate_job', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('candidate_id')->constrained()->onDelete('cascade');
-            $table->foreignId('job_offers_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['applied', 'interview', 'approved', 'rejected'])->default('applied');
+            $table->text('message')->nullable();
+            $table->string('resume_path')->nullable();
+            $table->foreignId('candidate_id')->constrained('candidates', 'id')->onDelete('cascade');
+            $table->foreignId('job_offer_id')->constrained('job_offers', 'id')->onDelete('cascade');
             $table->timestamps();
-            $table->unique(['candidate_id', 'job_offers_id']);
+            $table->unique(['candidate_id', 'job_offer_id']);
         });
     }
 

@@ -3,16 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Laravel\Sanctum\HasApiTokens;
 
 class Candidate extends Authenticatable
 {
+    use HasApiTokens;
+    
     protected $fillable = [
-        'bio',
-        'profile_photo',
+        'name',
+        'email',
         'password',
+        'phone',
         'state',
         'city',
+        'bio',
+        'profile_photo',
+        'birthdate',
     ];
 
     public function skills()
@@ -28,8 +34,11 @@ class Candidate extends Authenticatable
             ->withPivot('status')
             ->withTimestamps();
     }
+
     protected $hidden = ['password'];
     protected $casts = [
-        'password' => 'hashed'
+        'password' => 'hashed',
+        'birthdate' => 'date:Y-m-d',
+        'rating' => 'decimal:2',
     ];
 }

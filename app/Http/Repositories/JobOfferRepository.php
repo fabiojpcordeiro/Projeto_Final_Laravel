@@ -11,8 +11,24 @@ class JobOfferRepository extends BaseRepository{
     public function getOffers(string $company_id){
         return $this->model->where('company_id', $company_id)->with('dates')->get();
     }
-    public function viewOffer($job_offer){
-        return $this->model->with('dates')->find($job_offer);
+
+    public function search(string $query){
+        return $this->model
+        ->where('title', 'like', "%$query%")
+        ->orWhere('city', 'like', "%$query%")
+        ->with('company')
+        ->get();
     }
 
+    public function findForCandidate(string $id){
+        return $this->model
+            ->with(['company', 'dates'])
+            ->findOrFail($id);
+    }
+    
+    public function findForCompany(string $id){
+        return $this->model
+            ->with(['candidates', 'dates'])
+            ->findOrFail($id);
+    }
 }

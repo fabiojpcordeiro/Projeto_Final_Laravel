@@ -20,6 +20,15 @@ class JobOfferController extends Controller
         return view('jobs/jobs', compact('jobs'));
     }
 
+    public function findForCompany(JobOffer $job_offer){
+        return $this->service->findForCompany($job_offer->id);
+    }
+
+    public function getForCandidate(JobOffer $job_offer)
+    {
+        return $this->service->findForCandidate($job_offer->id);
+    }
+
     public function create()
     {
         $company = Auth::user()->company;
@@ -35,7 +44,7 @@ class JobOfferController extends Controller
     public function edit(JobOffer $job_offer)
     {
         $company = Auth::user()->company;
-        $job = $this->service->viewOffer($job_offer);
+        $job_offer = $this->service->findForCompany($job_offer->id);
         return view('jobs.edit', compact('job_offer', 'company'));
     }
     public function update(UpdateJobOfferRequest $request, JobOffer $job_offer){

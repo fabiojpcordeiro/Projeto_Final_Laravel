@@ -22,7 +22,7 @@ class JobOffer extends Model
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
-    public function applicants()
+    public function candidates()
     {
         return $this
             ->belongsToMany(Candidate::class, 'candidate_job')
