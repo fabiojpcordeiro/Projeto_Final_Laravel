@@ -14,34 +14,65 @@
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $status
+ * @property string|null $message
+ * @property string|null $resume_path
+ * @property int $candidate_id
+ * @property int $job_offer_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Candidate $candidate
+ * @property-read \App\Models\JobOffer $jobOffer
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereJobOfferId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereResumePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereUpdatedAt($value)
+ */
+	class Application extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property string $name
  * @property string $email
  * @property string $password
+ * @property \Illuminate\Support\Carbon|null $birthdate
+ * @property string $phone
  * @property string $state
  * @property string $city
  * @property string|null $bio
  * @property string|null $profile_photo
- * @property int $review_count
- * @property string $review_sum
- * @property string $rating
+ * @property numeric $rating
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobOffer> $jobs
  * @property-read int|null $jobs_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Skill> $skills
  * @property-read int|null $skills_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
+ * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereBio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereBirthdate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereProfilePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereRating($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereReviewCount($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereReviewSum($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereUpdatedAt($value)
  */
@@ -169,8 +200,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon $open_until
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Candidate> $applicants
- * @property-read int|null $applicants_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Candidate> $candidates
+ * @property-read int|null $candidates_count
  * @property-read \App\Models\Company $company
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobDates> $dates
  * @property-read int|null $dates_count

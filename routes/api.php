@@ -1,10 +1,18 @@
 <?php
 
 use App\Http\Controllers\Api\ApiCandidateController;
-use App\Http\Controllers\Api\ApiCompanyController;
-use App\Http\Controllers\Api\ApiJobOfferController;
+use App\Http\Controllers\api\ApiJobOfferController;
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('/companies-api', ApiCompanyController::class);
-Route::apiResource('/candidates-api', ApiCandidateController::class);
-Route::apiResource('/job-offers-api', ApiJobOfferController::class);
+Route::post('candidate/register', [ApiCandidateController::class, 'register'])->name('api-register');
+Route::post('candidate/login', [ApiCandidateController::class, 'login'])->name('api-login');
+Route::get('job-offers/search/', [ApiJobOfferController::class, 'search']);
+Route::get('job-offers', [ApiJobOfferController::class, 'index']);
+Route::get('job-offers/{job_offer}', [ApiJobOfferController::class, 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/candidate/me', [ApiCandidateController::class, 'me'])->name('me');
+    Route::apiResource('/candidate', ApiCandidateController::class)
+        ->except(['store']);
+    Route::post('/candidate/logout', [ApiCandidateController::class, 'logout'])->name('logout');
+});

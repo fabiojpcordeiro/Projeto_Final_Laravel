@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'main_landing')->name('main');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/find/{id}', [JobOfferController::class, 'findForCompany'])->name('findForCompany');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/store-company',[CompanyController::class, 'storeCompany'])->name('storeCompany');
     Route::view('dashboard', 'dashboard')->name('dashboard');
