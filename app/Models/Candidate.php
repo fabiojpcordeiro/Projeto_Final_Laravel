@@ -35,7 +35,7 @@ class Candidate extends Authenticatable
             ->withTimestamps();
     }
 
-    protected $hidden = ['password'];
+    protected $hidden = ['password', 'pivot'];
     protected $casts = [
         'password' => 'hashed',
         'birthdate' => 'date:Y-m-d',
