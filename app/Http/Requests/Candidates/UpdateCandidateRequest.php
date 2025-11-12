@@ -26,12 +26,14 @@ class UpdateCandidateRequest extends FormRequest
             'name' => 'sometimes|string|max:200',
             'email' => ['sometimes', 'email',
             Rule::unique('candidates', 'email')->ignore($this->route('candidate'))],
+            'password' =>'sometimes|string|min:8|confirmed',
             'phone' => 'sometimes|string|max:100',
-            'state' => 'sometimes|string|size:2',
-            'city' => 'sometimes|string|max:150',
+            'state_id' => 'sometimes|integer|exists:states,id',
+            'city_id' => 'sometimes|integer|exists:cities,id',
             'bio' => 'sometimes|string',
             'profile_photo' => 'sometimes|nullable|string|max:200',
             'birthdate' => 'sometimes|date',
+            'resume' => 'sometimes|file|mimes:pdf|max:5120'
             
         ];
     }

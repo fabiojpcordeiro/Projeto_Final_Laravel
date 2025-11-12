@@ -11,7 +11,12 @@ class State extends Model
     protected $table = 'states';
     protected $fillable = ['id', 'abbr', 'name'];
 
-    public function cities(){
+    public function cities()
+    {
         return $this->hasMany(City::class, 'state_id', 'id');
+    }
+    public function candidates()
+    {
+        return $this->hasMany(Candidate::class, 'state_id', 'id');
     }
 }

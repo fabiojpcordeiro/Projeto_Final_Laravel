@@ -48,38 +48,39 @@ class ApiCandidateController extends Controller
 
     public function register(CreateCandidateRequest $request)
     {
-        $this->service->store($request->validated());
-        return response()->json(['data' => 'Usuário criado com sucesso']);
+        $candidate = $this->service->store($request->validated());
+        return response()->json(['message' => 'Usuário criado com sucesso', 'candidate' => $candidate]);
     }
 
     public function me(){
-        $user = auth()->user();
-        return response()->json(['data'=> $user]);
+        $user_id = auth()->user()->id;
+        return response()->json(['data'=> $this->service->me($user_id)]);
     }
 
     public function index()
     {
         return response()->json(['data' => 'api funcionando']);
     }
+
     public function all()
     {
         return response()->json(['data' => $this->service->all()]);
     }
-    public function store(CreateCandidateRequest $request)
-    {
-        return response()->json(['data' => $this->service->store($request->validated())]);
-    }
 
     public function update(UpdateCandidateRequest $request, Candidate $candidate)
     {
-        $this->service->update($candidate, $request->validated());
+        $resume = $request->file('resume');
+        $data = $request->validated();
+        $this->service->updateCandidate($candidate, $data, $resume);
         return response()->json(['data' => 'Usuário atualizado com sucesso']);
     }
+
     public function show(Candidate $candidate){
         return response()->json(['data'=> $this->service->show($candidate->id)]);
     }
+
     public function destroy(Candidate $candidate){
-        $this->service->destroy($candidate);
+        $this->service->destroyCandidate($candidate);
         return response()->json(['data'=>'Conta deletada com sucesso.']);
     }
 }

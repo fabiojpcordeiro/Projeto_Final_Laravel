@@ -27,9 +27,6 @@ class ApiApplicationController extends Controller
     {
         $data = $request->validated();
         $data['candidate_id'] = auth()->user()->id;
-        if ($request->hasFile('file')) {
-            $data['file'] = $request->file('file');
-        }
         return $this->service->storeApplication($data);
     }
 
@@ -37,9 +34,6 @@ class ApiApplicationController extends Controller
     {
         $data = $request->validated();
         $data['candidate_id'] = auth()->user()->id;
-        if(request()->hasFile('file')){
-            $data['file'] == $request->file('file');
-        }
         return $this->service->updateApplication($application, $data);
     }
 

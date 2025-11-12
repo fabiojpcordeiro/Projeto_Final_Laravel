@@ -15,11 +15,7 @@ class CompanyService extends BaseService{
         $this->company_repository = $repository;
     }
 
-    public function storeCompany(array $data, User $user, ?UploadedFile $logo =null){
-
-        if($logo){
-            $data['logo'] = $logo->store('logos', 'public');
-        }
+    public function storeCompany(array $data, User $user){
         $company = $this->repository->store($data);
         $user->company_id = $company->id;
         $user->role = 'admin';

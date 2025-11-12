@@ -14,11 +14,12 @@ class Candidate extends Authenticatable
         'email',
         'password',
         'phone',
-        'state',
-        'city',
+        'state_id',
+        'city_id',
         'bio',
         'profile_photo',
         'birthdate',
+        'resume'
     ];
 
     public function skills()
@@ -33,6 +34,12 @@ class Candidate extends Authenticatable
             ->belongsToMany(JobOffer::class, 'candidate_job')
             ->withPivot('status')
             ->withTimestamps();
+    }
+    public function city(){
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+    public function state(){
+        return $this->belongsTo(State::class, 'state_id', 'id');
     }
 
     protected $hidden = ['password', 'pivot'];

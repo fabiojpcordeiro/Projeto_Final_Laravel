@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\MyComponents;
 
 use Livewire\Component;
 use App\Models\State;
@@ -18,10 +18,23 @@ class LocationSelect extends Component
     public $stateFieldName = 'state';
     public $cityFieldName = 'city';
 
-    public function mount()
+    public function mount($selectedState = null, $selectedCity = null )
     {
         $this->states = State::orderBy('name')->get();
-    }
+        if($selectedState){
+            $state = State::find($selectedState);
+            if($state){
+                $this->selectedState = $state->id;
+            }
+        }
+        if($selectedCity){
+            $city = City::find($selectedCity);
+                if($city){
+                    $this->selectedCity = $city->id;
+                    $this->cityInput = $city->name;
+                }
+            }
+        }
 
     public function updatedSelectedState()
     {
