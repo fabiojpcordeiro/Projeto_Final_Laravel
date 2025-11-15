@@ -13,10 +13,13 @@ class ApplicationService extends BaseService
         parent::__construct($repository);
     }
 
+    public function show($id){
+        return $this->repository->show($id);
+    }
+
     public function storeApplication(array $data)
-    {
-        $application = $this->repository->store(array_merge($data, ['resume'=> null]));
-        $candidate = auth()->user();
+    {   
+        $application = $this->repository->store(array_merge($data, ['status'=> 'applied']));
         return $application;
     }
 

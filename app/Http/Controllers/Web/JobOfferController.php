@@ -47,8 +47,14 @@ class JobOfferController extends Controller
         $job_offer = $this->service->findForCompany($job_offer->id);
         return view('jobs.edit', compact('job_offer', 'company'));
     }
+
     public function update(UpdateJobOfferRequest $request, JobOffer $job_offer){
         $this->service->update($job_offer, $request->validated());
         return redirect()->route('dashboard')->with('success', 'Vaga atualizada com sucesso!');
+    }
+    
+    public function destroy($id){
+        $this->service->destroy($id);
+        return redirect()->route('dashboard')->with('success', 'Vaga apagada com sucesso!');
     }
 }

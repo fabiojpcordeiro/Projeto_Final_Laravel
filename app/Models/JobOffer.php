@@ -41,5 +41,9 @@ class JobOffer extends Model
         ->toArray();
     }
 
-    protected $casts = ['open_until'=>'datetime'];
+    protected $casts = [
+        'open_until'=>'datetime:d/m/Y',
+        'created_at'=> 'datetime:d/m/Y',
+        'updated_at'=> 'datetime:d/m/Y'
+    ];
 }

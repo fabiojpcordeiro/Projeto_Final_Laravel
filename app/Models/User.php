@@ -40,4 +40,10 @@ class User extends Authenticatable
     public function isAdmin() { return $this->role === 'admin';}
     public function isHr() { return $this->role === 'hr';}
     public function isEmployee() { return $this->role === 'employee';}
+
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y'
+
+    ];
 }

@@ -8,8 +8,6 @@ use App\Http\Requests\Application\UpdateApplicationRequest;
 use App\Http\Services\ApplicationService;
 use App\Models\Application;
 
-use function Livewire\store;
-
 class ApiApplicationController extends Controller
 {
     private $service;
@@ -27,7 +25,8 @@ class ApiApplicationController extends Controller
     {
         $data = $request->validated();
         $data['candidate_id'] = auth()->user()->id;
-        return $this->service->storeApplication($data);
+        $this->service->storeApplication($data);
+        return response()->json(['message'=>'Candidatura criada com sucesso.']);
     }
 
     public function update(UpdateApplicationRequest $request, Application $application)
@@ -37,8 +36,9 @@ class ApiApplicationController extends Controller
         return $this->service->updateApplication($application, $data);
     }
 
-    public function destroy($object)
+    public function destroy($id)
     {
-        return $this->service->destroy($object);
+        $this->service->destroy($id);
+        return response()->json(['message'=>'Candidatura apagada com sucesso.']);
     }
 }

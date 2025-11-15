@@ -15,7 +15,6 @@ class UpdateApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'resume' => 'nullable|file|mimes:pdf|max:5120',
             'message' => 'nullable|string|max:1000',
             'job_offer_id' => [
                 'required',

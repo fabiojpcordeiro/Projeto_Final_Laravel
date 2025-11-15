@@ -19,13 +19,6 @@ class CandidateService extends BaseService
 
     public function updateCandidate(Candidate $candidate, array $data, ?UploadedFile $resume = null)
     {
-        if (isset($resume)) {
-            $old_resume = $candidate->resume;
-            if ($old_resume && Storage::disk('public')->exists($old_resume)) {
-                Storage::disk('public')->delete($old_resume);
-            }
-            $data['resume'] = $resume->store('resumes', 'public');
-        }
         return $this->repository->update($candidate, $data);
     }
 
@@ -38,7 +31,8 @@ class CandidateService extends BaseService
         return $this->repository->destroy($candidate->id);
     }
 
-    public function me(string $user_id){
+    public function me(string $user_id)
+    {
         $candidate = $this->candidate_repository->me($user_id);
         return [
             'id' => $candidate->id,
@@ -50,7 +44,9 @@ class CandidateService extends BaseService
             'city_id' => $candidate->city_id,
             'city_name' => $candidate->city?->name,
             'bio' => $candidate->bio,
-            'profile_photo' => $candidate->profile_photo,
+            'profile_photo' => $candidate->profile_photo
+                ? Storage::url($candidate->profile_photo)
+                : null,
             'birthdate' => $candidate->birthdate,
         ];
     }
