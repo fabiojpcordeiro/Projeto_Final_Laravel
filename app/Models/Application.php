@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Application extends Model
+class Application extends Pivot
 {
     protected $table = 'candidate_job';
     protected $fillable = ['message', 'candidate_id', 'job_offer_id'];
@@ -19,4 +20,14 @@ class Application extends Model
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y'
     ];
+
+    public function getStatusLabelAttribute()
+    {
+        return [
+            'applied'   => 'Em análise',
+            'interview' => 'Entrevista',
+            'approved'  => 'Aprovado',
+            'rejected'  => 'Rejeitado',
+        ][$this->status] ?? 'Desconhecido';
+    }
 }

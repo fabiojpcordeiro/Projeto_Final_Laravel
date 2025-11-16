@@ -3,17 +3,17 @@
     {{-- Info Card --}}
     <div id="landing" class="relative h-[90%] w-[40%] bg-black m-10 ml-24 rounded-xl z-10 opacity-80">
         <div class="text-white text-center p-10">
-            <div id="logo" class="h-24 w-full">
+            <div id="logo" class="h-20 w-1/2 mt-5 mx-auto">
                 <x-my_components.logo> </x-my_components.logo>
             </div>
 
-            <p class="text-5xl ">Bem vindo à <span class="text-blue-500 font-bold">/nome/</span>!</p>
+            <p class="text-5xl mt-10">Bem vindo à <span class="text-blue-500 font-bold">Occupy</span>!</p>
 
             <h1 class="text-3xl mt-10">Procurando mão de obra temporária para seu negócio?</h1>
             <h2 class="text-2xl mt-3">
-                Somos a /nome/ e estamos aqui para conectar negócios que precisam de mão de obra
+                Somos a <span class="text-blue-500 font-bold">Occupy</span> e estamos aqui para conectar negócios que precisam de mão de obra
                 extra com pessoas em busca de renda extra e oportunidades para mostrar o que sabem!
-            </h2>
+            </h2>   
 
             <p class="text-2xl mt-3">Cadastre sua empresa e comece a anunciar!</p>
 

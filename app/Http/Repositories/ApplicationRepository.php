@@ -10,6 +10,13 @@ class ApplicationRepository extends BaseRepository{
         parent::__construct($model);
     }
 
+    public function index($id){
+        return $this->model
+        ->with('jobOffer.dates')
+        ->where('candidate_id', $id)
+        ->get();
+    }
+
     public function show($id){
         return $this->model
         ->with('jobOffer.dates')

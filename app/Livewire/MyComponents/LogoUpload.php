@@ -18,23 +18,31 @@ class LogoUpload extends Component
         'logo' => 'required|image|max:2048'
     ];
 
-    public function mount(Company $company){
+    public function mount(Company $company)
+    {
         $this->company = $company;
-        $this->previewUrl = $company->logo ? asset('storage/' . $company->logo) : null;
+        if ($company->logo) {
+            $this->previewUrl = asset('storage/' . $company->logo);
+        } else {
+            $this->previewUrl = asset('storage/logos/default/default_logo.png');
+        }
     }
-    public function updatedLogo(){
+    public function updatedLogo()
+    {
         $this->validateOnly('logo');
         $this->previewUrl = $this->logo->temporaryUrl();
     }
-    public function save(){
+    public function save()
+    {
         $this->validate();
-        if($this->company->logo){
+        if ($this->company->logo) {
             Storage::disk('public')->delete($this->company->logo);
         }
         $path = $this->logo->store('logos', 'public');
-        $this->company->update(['logo'=>$path]);
+        $this->company->logo = $path;
+        $this->company->save();
         $this->previewUrl = asset('storage/' . $path);
-        session()->flash('success', 'Logo atualizado com sucesso.');
+        session()->flash('successLogo', 'Logo atualizado com sucesso.');
     }
 
     public function render()

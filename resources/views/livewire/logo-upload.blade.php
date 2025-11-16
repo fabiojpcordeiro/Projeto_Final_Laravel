@@ -1,28 +1,34 @@
-<div class="flex flex-col gap-4 items-start">
-    <form wire:submit.prevent="save" class="flex flex-col gap-3 w-full">
+@props(['company' => null])
+<div class="flex flex-col gap-4">
+    <form wire:submit.prevent="save" class="flex flex-col gap-3 w-full items-center">
         @csrf
 
-        <div>
-            <label for="logo" class="font-semibold">Logo da Empresa:</label>
-            <input type="file" id="logo" wire:model="logo" accept="image/*" class="block mt-1">
-            @error('logo')
-                <p class="text-red-600 text-sm">{{ $message }}</p>
-            @enderror
-        </div>
-
         @if ($previewUrl)
-            <div class="mt-2">
-                <p class="font-semibold text-sm">Pré-visualização:</p>
-                <img src="{{ $previewUrl }}" alt="Preview" class="w-32 h-32 object-cover rounded-lg border">
+            <div class="mt-2 form-layout">
+                <h3>Logo</h3>
+                <img src="{{ $previewUrl }}"
+                    class="w-32 h-32 object-cover rounded-full border justify-self-center">
             </div>
         @endif
+        <div class="flex flex-col">
 
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-            Salvar Logo
+            <div x-data>
+                <input type="file" id="logo" class="hidden" accept="image/*" wire:model="logo" x-ref="fileInput">
+                <button type="button" class="simple-button-secondary text-sm" @click="$refs.fileInput.click()">
+                    Selecionar outra imagem
+                </button>
+                @error('logo')
+                    <p class="text-red-600 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+        <button type="submit" class="simple-button-secondary text-lg">
+            Salvar logo
         </button>
     </form>
 
-    @if (session('success'))
-        <p class="text-green-600 font-semibold">{{ session('success') }}</p>
+    @if (session('successLogo'))
+        <p class="text-white bg-green-400 rounded-lg text-lg w-1/2 mx-auto">{{ session('successLogo') }}</p>
     @endif
 </div>

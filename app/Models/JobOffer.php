@@ -26,7 +26,8 @@ class JobOffer extends Model
     {
         return $this
             ->belongsToMany(Candidate::class, 'candidate_job')
-            ->withPivot('status')
+            ->using(Application::class)
+            ->withPivot(['id', 'status', 'message', 'company_message'])
             ->withTimestamps();
     }
     public function dates(){

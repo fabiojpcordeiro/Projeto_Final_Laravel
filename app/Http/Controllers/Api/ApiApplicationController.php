@@ -17,9 +17,14 @@ class ApiApplicationController extends Controller
         $this->service = $service;
     }
 
+    public function index(){
+        $user = auth()->user();
+        return response()->json(['data'=>$this->service->index($user->id)]);
+    }
+
     public function show(string $id)
-    {
-        return $this->service->show($id);
+    {   $data = $this->service->show($id);
+        return response()->json(['data'=>$data], 200);
     }
     public function store(CreateAplicationRequest $request)
     {

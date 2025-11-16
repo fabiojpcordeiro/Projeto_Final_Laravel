@@ -13,6 +13,7 @@ return new class extends Migration
             $table->id();
             $table->enum('status', ['applied', 'interview', 'approved', 'rejected'])->default('applied');
             $table->text('message')->nullable();
+            $table->text('company_message')->nullable();
             $table->string('resume')->nullable();
             $table->foreignId('candidate_id')->constrained('candidates', 'id')->onDelete('cascade');
             $table->foreignId('job_offer_id')->constrained('job_offers', 'id')->onDelete('cascade');

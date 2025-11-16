@@ -32,7 +32,8 @@ class Candidate extends Authenticatable
     {
         return $this
             ->belongsToMany(JobOffer::class, 'candidate_job')
-            ->withPivot('status')
+            ->using(Application::class)
+            ->withPivot(['id', 'status', 'message', 'company_message'])
             ->withTimestamps();
     }
     public function city()

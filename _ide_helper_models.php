@@ -16,17 +16,20 @@ namespace App\Models{
  * @property int $id
  * @property string $status
  * @property string|null $message
+ * @property string|null $company_message
  * @property string|null $resume
  * @property int $candidate_id
  * @property int $job_offer_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Candidate $candidate
+ * @property-read mixed $status_label
  * @property-read \App\Models\JobOffer $jobOffer
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCandidateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCompanyMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereJobOfferId($value)
@@ -55,6 +58,7 @@ namespace App\Models{
  * @property int $city_id
  * @property string|null $resume
  * @property-read \App\Models\City|null $city
+ * @property-read \App\Models\Application|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobOffer> $jobs
  * @property-read int|null $jobs_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Skill> $skills
@@ -206,6 +210,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon $open_until
+ * @property-read \App\Models\Application|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Candidate> $candidates
  * @property-read int|null $candidates_count
  * @property-read \App\Models\Company $company

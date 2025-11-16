@@ -39,10 +39,10 @@ class FileService
     {
         //Delete old resume if it exists
         $old_resume = $user->resume;
-        if (!empty($old_resume) && Storage::disk('public')->exists($old_resume)) {
-            Storage::disk('public')->delete($old_resume);
+        if (!empty($old_resume) && Storage::disk('private')->exists($old_resume)) {
+            Storage::disk('private')->delete($old_resume);
         }
-        $path = $file->store('resumes', 'public');
+        $path = $file->store('resumes', 'private');
         if (!$path) {
             return false;
         }

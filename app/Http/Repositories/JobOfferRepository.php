@@ -53,4 +53,15 @@ class JobOfferRepository extends BaseRepository
             ->with(['candidates', 'dates'])
             ->findOrFail($id);
     }
+
+    public function getCandidatesByOffer(string $job_offer_id)
+    {
+        $job = $this->model
+            ->with('candidates')
+            ->findOrFail($job_offer_id);
+        $job->candidates->each(function ($candidate) {
+            $candidate->pivot_data = $candidate->pivot;
+        });
+        return $job;
+    }
 }

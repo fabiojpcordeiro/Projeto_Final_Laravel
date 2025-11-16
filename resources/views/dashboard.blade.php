@@ -7,11 +7,11 @@
         </p>
         @endif
         @if (Auth::user()->company_id)
-            <h2>Bem vindo a sua empresa</h2>
+            @livewire('dashboard')
         @else
             <h2>Parece que você ainda não cadastrou a sua empresa, vamos começar?</h2>
-            <a href="{{ route('company.create') }}">
-                <button>
+            <a class="simple-button bg-green-500" href="{{ route('company.create') }}">
+                <button class="w-32 mt-5 font-bold">
                     Cadastrar
                 </button>
             </a>

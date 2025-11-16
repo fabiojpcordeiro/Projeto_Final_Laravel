@@ -6,13 +6,13 @@
 @layer components{
     /*SECTION CONFIG*/
     .section{
-        @apply py-10 px-10 text-white text-2xl
+        @apply py-10 px-10 text-white text-2xl 
     }
     .section-title{
-        @apply text-3xl font-semibold text-white shadow-sm py-2 mb-3
+        @apply text-3xl w-[60%] font-semibold text-white shadow-sm py-2 mb-3 justify-self-center bg-blue-500 rounded-lg
     }
     .main-body{
-        @apply text-center pt-20 bg-gradient-to-r from-gray-400 to-gray-600 text-black min-h-screen
+        @apply text-center pt-20 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-600 text-black min-h-screen
         flex flex-col flex-grow      
     }
 
@@ -21,6 +21,12 @@
         @apply  text-white text-lg bg-blue-500 p-2 rounded-md;
         @apply  hover:border-white hover:text-blue-500 hover:bg-white
     }
+
+    .simple-button-secondary{
+        @apply  text-blue-500 text-lg bg-white p-2 rounded-md border-2;
+        @apply  hover:border-white hover:text-white hover:bg-blue-500
+    }
+
     .button{
         @apply px-4 py-2 rounded-md text-white font-medium text-center inline-block transition-colors duration-200;
         @apply hover:scale-105 hover:shadow-xl
@@ -42,6 +48,9 @@
     .form-layout{
         @apply w-[60%] py-2 px-10 justify-self-center
     }
+    .form-field{
+        @apply flex flex-col rounded-lg text-white font-semibold text-center mt-1
+    }
 
     /*MISC*/
     .blue-gradient{
@@ -49,5 +58,8 @@
     }
     .message-animation{
         @apply animate-in fade-in duration-300
+    }
+    .validation-error{
+        @apply text-red-600 text-sm
     }
 }

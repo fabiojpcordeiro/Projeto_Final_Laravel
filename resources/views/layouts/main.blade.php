@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App</title>
+    <title>Occupy</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -16,15 +16,14 @@
          text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
          fixed top-0 z-50 rounded-b-xl">
         {{-- LOGO --}}
-        <div class="flex w-[15%] h-20 ml-10">
+        <div class="flex w-[15%] h-20 ml-10 bg-white rounded-xl">
             <x-my_components.logo>
             </x-my_components.logo>
         </div>
         {{-- Search Bar --}}
         <div class="mx-6 h-20 w-[35%] flex items-center text-black font-semibold">
-            <form action="" method="GET" class="w-full flex gap-3">
-                @csrf
-                <input type="search" id="search" name="search" placeholder="Procure por profissionais"
+            <form action="{{ route('home.search') }}" method="GET" class="w-full flex gap-3">
+                <input type="search" id="search" name="q" placeholder="Procure por profissionais"
                     class="w-full text-left rounded-md">
                 <button type="submit"
                     class="bg-white text-blue-500 font-bold w-20 rounded-xl hover:bg-blue-500 hover:text-white hover:border-2">Buscar</button>

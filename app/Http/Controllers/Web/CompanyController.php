@@ -20,6 +20,10 @@ class CompanyController extends Controller
         $this->service = $service;
     }
 
+    public function index(){
+        return redirect()->route('home');
+    }
+
     public function create()
     {
         //$this->authorize('create', Company::class);
@@ -31,11 +35,7 @@ class CompanyController extends Controller
         $this->authorize('create', Company::class);
         $data = $request->validated();
         $this->service->storeCompany($data, Auth::user());
-        return redirect()->route('dashboard')->with('success', 'Empresa criada com sucesso.');
-    }
-
-    public function storeLogo(Request $request){
-        
+        return redirect()->route('home')->with('success', 'Empresa criada com sucesso.');
     }
 
     public function show(string $id)
@@ -49,14 +49,14 @@ class CompanyController extends Controller
     {
         $company = $this->service->show($id);
         $this->authorize('update', $company);
-        return view('company.edit', compact('company'));
+        return view('company.show', compact('company'));
     }
 
     public function update(UpdateCompanyRequest $request, Company $company)
     {
         $this->authorize('update', $company);
         $this->service->update($company, $request->validated());
-        return redirect()->route('dashboard')->with('success', 'Empresa atualizada com sucesso.');
+        return redirect()->back()->with('success', 'Empresa atualizada com sucesso.');
     }
 
     public function destroy(string $id)
@@ -64,6 +64,6 @@ class CompanyController extends Controller
         $company = $this->service->show($id);
         $this->authorize('delete', $company);
         $this->service->destroy($id);
-        return redirect()->route('dashboard')->with('success', 'A empresa foi deletada com sucesso.');
+        return redirect()->route('home')->with('success', 'A empresa foi deletada com sucesso.');
     }
 }
