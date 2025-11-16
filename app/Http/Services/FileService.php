@@ -23,7 +23,7 @@ class FileService
 
     public function setPhoto(UploadedFile $photo, string $id)
     {
-        $candidate = Candidate::show($id);
+        $candidate = Candidate::findOrFail($id);
         if (!$candidate) return false;
         //delete older profile photo if it exists
         if ($candidate->profile_photo && Storage::disk('public')->exists($candidate->profile_photo)) {

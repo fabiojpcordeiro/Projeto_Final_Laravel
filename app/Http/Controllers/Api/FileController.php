@@ -24,6 +24,7 @@ class FileController extends Controller
         }
         return response()->file($result['file_path']);
     }
+    
     public function setPhoto(Request $request)
     {
         $user_id = auth()->user()->id;

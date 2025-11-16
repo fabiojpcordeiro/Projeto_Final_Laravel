@@ -9,17 +9,18 @@ class Application extends Pivot
 {
     protected $table = 'candidate_job';
     protected $fillable = ['message', 'candidate_id', 'job_offer_id'];
-
+    protected $appends = ['status_label'];
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y'
+    ];
     public function candidate(){
         return $this->belongsTo(Candidate::class, 'candidate_id', 'id');
     }
     public function jobOffer(){
         return $this->belongsTo(JobOffer::class, 'job_offer_id', 'id');
     }
-    protected $casts = [
-        'created_at' => 'datetime:d/m/Y',
-        'updated_at' => 'datetime:d/m/Y'
-    ];
+    
 
     public function getStatusLabelAttribute()
     {
