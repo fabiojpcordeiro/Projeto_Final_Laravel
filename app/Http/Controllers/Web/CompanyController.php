@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests as AccessAuthorizesRequests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Company\CompanyReviewRequest;
 use App\Http\Requests\Company\CreateCompanyRequest;
 use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Http\Services\CompanyService;
 use App\Models\Company;
 use Auth;
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -22,7 +22,7 @@ class CompanyController extends Controller
 
     public function create()
     {
-        $this->authorize('create', Company::class);
+        //$this->authorize('create', Company::class);
         return view('company.create');
     }
 
@@ -30,8 +30,12 @@ class CompanyController extends Controller
     {
         $this->authorize('create', Company::class);
         $data = $request->validated();
-        $this->service->storeCompany($data, Auth::user(), $request->file('logo'));
+        $this->service->storeCompany($data, Auth::user());
         return redirect()->route('dashboard')->with('success', 'Empresa criada com sucesso.');
+    }
+
+    public function storeLogo(Request $request){
+        
     }
 
     public function show(string $id)

@@ -38,7 +38,7 @@ class JobOfferController extends Controller
     public function store(CreateJobOfferRequest $request)
     {
         $this->service->store($request->validated());
-        return back()->with('success', 'Vaga criada com sucesso!');
+        return redirect()->route('dashboard')->with('success', 'Vaga criada com sucesso!');
     }
 
     public function edit(JobOffer $job_offer)

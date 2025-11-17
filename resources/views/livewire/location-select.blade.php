@@ -7,6 +7,9 @@
                 <option value="{{ $state->id }}">{{ $state->name }}</option>
             @endforeach
         </select>
+        @error('state')
+        <p>{{ $message }}</p>   
+        @enderror
     </div>
     <div class="relative company-field">
         <label for="city" class="text-center">Cidade:</label>
@@ -21,6 +24,9 @@
                 @endforeach
             </ul>
         @endif
+        @error('city')
+        <p>{{ $message }}</p>   
+        @enderror
     </div>
     <input type="hidden" name="{{ $stateFieldName }}" value="{{ $selectedState }}">
     <input type="hidden" name="{{ $cityFieldName }}" value="{{ $selectedCity }}">

@@ -1,7 +1,7 @@
 @props(['action', 'method', 'company'=> null])
 
 <div class="form-layout">
-    <form action="{{ $action }}" method="POST" enctype="multipart/form-data" novalidate>
+    <form action="{{ $action }}" method="POST" novalidate>
         @if (in_array($method, ['PUT', 'PATCH', 'DELETE']))
             @method($method)
         @endif
@@ -22,7 +22,10 @@
             @enderror
         </div>
         <div>
-            @livewire('location-select')
+            @livewire('MyComponents.location-select',
+            ['selectedState'=>$company->state ?? null,
+            'selectedCity'=>$company->city ?? null
+            ])
         </div>
         <div class="company-field">
             <label for="street">Rua</label>
@@ -52,13 +55,10 @@
                 <p>{{ $message }}</p>
             @enderror
         </div>
-        <div class="company-field">
-            <label for="logo">Adicione o logo da empresa (opcional)</label>
-            <input type="file" class="input-style text-sm" name="logo" id="logo">
-            @error('logo')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
         <button type="submit" class="simple-button w-[50%] my-2">Enviar</button>
     </form>
+    @if ($company)
+        @livewire('my-components.logo-upload', ['company' => $company])     
+    @endif
+
 </div>

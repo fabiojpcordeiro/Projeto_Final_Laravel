@@ -4,7 +4,8 @@ namespace App\Http\Services;
 
 use App\Http\Repositories\JobDatesRepository;
 use App\Http\Repositories\JobOfferRepository;
-use Illuminate\Database\Eloquent\Model;
+
+use function PHPSTORM_META\map;
 
 class JobOfferService extends BaseService
 {
@@ -15,6 +16,10 @@ class JobOfferService extends BaseService
         $this->job_repository = $job_repository;
         $this->dates_repository = $dates_repository;
         parent::__construct($job_repository);
+    }
+
+    public function index(){
+        return $this->job_repository->index();
     }
 
     public function store(array $data){
@@ -58,7 +63,7 @@ class JobOfferService extends BaseService
         return $jobOffer;
     }
 
-    public function search(string $query){
-        return $this->job_repository->search($query);
+    public function getByCity(string $query){
+        return $this->job_repository->getByCity($query);
     }
 }

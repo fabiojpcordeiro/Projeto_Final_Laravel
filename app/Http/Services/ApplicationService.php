@@ -16,12 +16,7 @@ class ApplicationService extends BaseService
     public function storeApplication(array $data)
     {
         $application = $this->repository->store(array_merge($data, ['resume'=> null]));
-
-        if (!empty($data['file'])) {
-            $resume_path = $data['file']->store('resumes', 'public');
-            $application->update(['resume'=>$resume_path]);
-            unset($data['file']);
-        }
+        $candidate = auth()->user();
         return $application;
     }
 

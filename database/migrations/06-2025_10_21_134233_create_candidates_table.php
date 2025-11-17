@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('city', 150);
             $table->text('bio')->nullable();
             $table->string('profile_photo', 200)->nullable();
+            $table->string('resume', 200)->nullable();
             $table->decimal('rating', 3, 2)->default(0);
             $table->timestamps();
             

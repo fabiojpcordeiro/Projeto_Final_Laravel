@@ -46,17 +46,20 @@ namespace App\Models{
  * @property string $password
  * @property \Illuminate\Support\Carbon|null $birthdate
  * @property string $phone
- * @property string $state
- * @property string $city
  * @property string|null $bio
  * @property string|null $profile_photo
  * @property numeric $rating
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $state_id
+ * @property int $city_id
+ * @property string|null $resume
+ * @property-read \App\Models\City|null $city
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobOffer> $jobs
  * @property-read int|null $jobs_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Skill> $skills
  * @property-read int|null $skills_count
+ * @property-read \App\Models\State|null $state
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate newModelQuery()
@@ -64,7 +67,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereBirthdate($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCityId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereId($value)
@@ -73,7 +76,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereProfilePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereRating($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereResume($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Candidate whereUpdatedAt($value)
  */
 	class Candidate extends \Eloquent {}
@@ -86,6 +90,8 @@ namespace App\Models{
  * @property int $state_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Candidate> $candidates
+ * @property-read int|null $candidates_count
  * @property-read \App\Models\State $state
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City newQuery()
@@ -249,6 +255,8 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Candidate> $candidates
+ * @property-read int|null $candidates_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\City> $cities
  * @property-read int|null $cities_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|State newModelQuery()

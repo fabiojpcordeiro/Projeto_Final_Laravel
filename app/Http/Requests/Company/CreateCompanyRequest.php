@@ -13,7 +13,7 @@ class CreateCompanyRequest extends FormRequest
         if(!$user){
             return false;
         }
-        return $user->company_id === null || $user->role === 'admin';
+        return $user->company_id === null;
     }
 
     public function rules(): array
@@ -21,13 +21,12 @@ class CreateCompanyRequest extends FormRequest
         return [
             'name' => 'required|string|min:2|max:100|unique:companies,name',
             'public_email' => 'required|max:100|unique:companies,public_email',
-            'state' => 'required|string|size:2',
+            'state' => 'required|string|min:2|max:100',
             'city' => 'required|string|min:2|max:150',
             'street'=> 'required|string|max:100',
             'number' => 'required|string|max:8',
             'sector' => 'nullable|string|min:2|max:100',
             'about' => 'nullable|string|max:3000',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
             ]; 
     }
     public function messages(): array
@@ -62,9 +61,6 @@ class CreateCompanyRequest extends FormRequest
 
             'about'=> 'nullable|string|',
 
-            'logo.image' => 'O arquivo do Logo deve ser uma imagem.',
-            'logo.mimes' => 'O Logo deve ser do tipo: jpeg, png, jpg, gif ou webp.',
-            'logo.max' => 'O Logo não pode ter mais de :max.'
         ];
     }
 }

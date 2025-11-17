@@ -10,7 +10,7 @@ class UpdateCompanyRequest extends FormRequest
     public function authorize(): bool
     {
         $user = auth('sanctum')->user();
-        return $user && $user->role === 'admin';
+        return isset($user) ;
     }
 
     public function rules(): array
@@ -25,11 +25,10 @@ class UpdateCompanyRequest extends FormRequest
             ],
             'public_email' => [
                 'sometimes',
-                'email:rfc,dns',
                 'max:100',
                 Rule::unique('companies', 'public_email')->ignore($this->company)
             ],
-            'state' => 'sometimes|string|size:2',
+            'state' => 'sometimes|string|min:2|max:100',
             'city' => 'sometimes|string|min:2|max:150',
             'street'=> 'sometimes|string|max:100',
             'number' => 'sometimes|string|max:8',

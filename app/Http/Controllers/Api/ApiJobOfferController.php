@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\JobOfferResource;
 use App\Http\Services\JobOfferService;
 use App\Models\JobOffer;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class ApiJobOfferController extends Controller
     }
 
     public function index(){
-        return response()->json(['data'=>$this->service->all()]);
+        $jobs = $this->service->index();
+        return JobOfferResource::collection($jobs);
     }
 
     public function show(JobOffer $job_offer){
@@ -25,10 +27,10 @@ class ApiJobOfferController extends Controller
 
     public function search(Request $request){
         $query = $request->input('query');
-        if(!$query){
-            return response()->json(['data'=>$this->service->all()]);
+        if(!$query || $query == ''){
+            return $this->index();
         }
-        return response()->json(['data' => $this->service->search($query)]);
-    }
-    
+        $jobs = $this->service->getBycity($query);
+        return JobOfferResource::collection($jobs);
+    } 
 }
