@@ -2,7 +2,9 @@
 <div x-data="{ openModal: false }">
     <div>
         <div class="flex items-center gap-4 mb-4 justify-center flex-col">
-            <img src="{{ asset('storage/' . $candidate->profile_photo) }}"
+            <img src="{{ $candidate->profile_photo 
+                        ? asset('storage/' . $candidate->profile_photo)
+                        : asset('images/icons/user.svg') }}"
                 class="w-16 h-16 rounded-full object-cover border">
             <div>
                 <h3 class="text-lg font-medium text-gray-800">{{ $candidate->name }}</h3>
