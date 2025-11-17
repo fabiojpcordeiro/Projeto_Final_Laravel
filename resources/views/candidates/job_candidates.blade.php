@@ -15,7 +15,7 @@
 
         <div class="flex flex-wrap gap-6 justify-center">
             @forelse ($job->candidates as $candidate)
-                <div class="bg-gray-50 h-96 w-[30%] border rounded-xl p-5 shadow-sm my-6 flex flex-col content-evenly">
+                <div class="bg-gray-50 h-96 w-[30%] border rounded-xl p-2 shadow-sm my-6 flex flex-col content-evenly relative">
                     @include('components.my_components.job_candidate_card', ['candidate' => $candidate])
                 </div>
             @empty

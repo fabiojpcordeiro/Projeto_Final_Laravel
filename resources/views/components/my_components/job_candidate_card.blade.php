@@ -40,22 +40,13 @@
         </div>
 
         {{-- BUTTONS --}}
-        <div class="flex justify-between">
-            <a href="{{ route('resume.download', ['job_offer_id' => $job->id, 'candidate_id' => $candidate->id]) }}"
-                target="_blank"
-                class="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                Ver CV
-            </a>
-
-            <div class="mt-auto flex justify-between items-center">
-
-                <div class="flex gap-2">
+        <div class="flex justify-between ">
+            <div class="mt-auto flex justify-between items-center absolute bottom-1 mx-2">
+                <div class="flex gap-2 mr-20">
                     <button @click ="openModal = true"
                         class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">
                         Aceitar
                     </button>
-
-
                     <form action="{{ route('updateStatus', $candidate->pivot->id) }}" method="POST" class="inline">
                         @csrf
                         @method('PATCH')
@@ -66,6 +57,13 @@
                     </form>
 
                 </div>
+                @if ($candidate->resume)
+                    <a href="{{ route('resume.download', ['job_offer_id' => $job->id, 'candidate_id' => $candidate->id]) }}"
+                        target="_blank"
+                        class="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Ver CV
+                    </a>
+                @endif
             </div>
         </div>
     </div>
