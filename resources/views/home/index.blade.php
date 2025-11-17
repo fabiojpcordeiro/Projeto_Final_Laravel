@@ -20,21 +20,23 @@
                 <div class="flex flex-wrap gap-6 justify-center">
                     @foreach ($candidates as $candidate)
                         <div
-                            class="bg-white shadow-md rounded-xl p-5 h-96 w-1/5 border flex flex-col justify-between items-center">
+                            class="bg-slate-500 shadow-md rounded-xl p-5 h-96 w-1/5 border flex flex-col justify-between items-center">
                             <div class="flex flex-col items-center gap-4 mb-4">
-                                <img src="{{ asset('storage/' . $candidate->profile_photo) }}"
+                                <img src="{{ $candidate->profile_photo 
+                                ? asset('storage/' . $candidate->profile_photo) 
+                                : asset('images/icons/user.svg') }}"
                                     class="w-20 h-20 rounded-full object-cover border">
                                 <div>
-                                    <h3 class="text-lg font-medium text-gray-800">{{ $candidate->name }}</h3>
-                                    <p class="text-sm text-gray-600">{{ $candidate->email }}</p>
-                                    <p class="text-sm text-gray-600">{{ $candidate->phone }}</p>
+                                    <h3 class="text-xl font-medium text-gray-800">{{ $candidate->name }}</h3>
+                                    <p class="text-lg text-white">{{ $candidate->email }}</p>
+                                    <p class="text-lg text-white">{{ $candidate->phone }}</p>
                                 </div>
                             </div>
 
-                            <p class="text-sm text-gray-700 mt-2">
+                            <p class="text-lg text-white mt-2">
                                 <strong>Bio:</strong> {{ $candidate->bio ?? 'Não informado' }}
                             </p>
-                            <p class="text-xs text-gray-500 mt-3">
+                            <p class="text-sm text-white mt-3">
                                 Cidade: {{ $candidate->city->name ?? '—' }}
                             </p>
                             @if ($candidate->resume)
