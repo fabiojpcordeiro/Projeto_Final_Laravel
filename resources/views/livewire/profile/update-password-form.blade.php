@@ -39,7 +39,7 @@ new class extends Component {
 
 <section>
     <header>
-        <h2>
+        <h2 class="mb-2 font-bold">
             Mudar senha
         </h2>
 
@@ -48,30 +48,35 @@ new class extends Component {
         </p>
     </header>
 
-    <form wire:submit.prevent="updatePassword">
-        <div>
-            <label for="update_password_current_password">Senha atual</label>
-            <input wire:model="current_password" type="password" id="update_password_current_password" name="current_password">
-            @error('current_password')
-                <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
-            @enderror
-        </div>
-        <div>
-            <label for="update_password_password">Nova senha</label>
-            <input wire:model="password" id="update_password_password" name="password" type="password">
-            @error('password')
-                <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
-            @enderror
-        </div>
-        <div>
-            <label for="update_password_password_confirmation">Confirme a senha</label>
-            <input wire:model="password_confirmation" id="update_password_password_confirmation" name="password_confirmation" type="password">
-            @error('password_confirmation')
-                <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
-            @enderror
-        </div>
-        <div>
-            <button type="submit">Salvar</button>
-        </div>
-    </form>
+    <div class="form-layout text-white font-semibold">
+        <form wire:submit.prevent="updatePassword">
+            <div class="form-field">
+                <label for="update_password_current_password">Senha atual</label>
+                <input wire:model="current_password" type="password" id="update_password_current_password"
+                    name="current_password"
+                    class="input-style">
+                @error('current_password')
+                    <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-field">
+                <label for="update_password_password">Nova senha</label>
+                <input wire:model="password" id="update_password_password" name="password" type="password" class="input-style">
+                @error('password')
+                    <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-field">
+                <label for="update_password_password_confirmation">Confirme a senha</label>
+                <input wire:model="password_confirmation" id="update_password_password_confirmation"
+                    name="password_confirmation" type="password" class="input-style">
+                @error('password_confirmation')
+                    <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
+                @enderror
+            </div>
+            <div>
+                <button type="submit" class="simple-button mt-4 w-full">Salvar</button>
+            </div>
+        </form>
+    </div>
 </section>

@@ -8,7 +8,7 @@
             @endforeach
         </select>
         @error('state')
-        <p>{{ $message }}</p>   
+        <p class="validation-error">{{ $message }}</p>   
         @enderror
     </div>
     <div class="relative company-field">
@@ -25,7 +25,7 @@
             </ul>
         @endif
         @error('city')
-        <p>{{ $message }}</p>   
+        <p class="validation-error">{{ $message }}</p>   
         @enderror
     </div>
     <input type="hidden" name="{{ $stateFieldName }}" value="{{ $selectedState }}">

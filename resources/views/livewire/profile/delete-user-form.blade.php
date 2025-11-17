@@ -25,16 +25,17 @@ new class extends Component {
 
 <section>
     <header>
-        <h2>
+        <h2 class="mb-2 font-bold">
             Deletar conta
         </h2>
 
-        <p>
-            Uma vez deletada, todas suas informações serão permanentemente perdidas, baixe seus conteúdos importantes.
+        <p class="text-lg">
+            Uma vez deletada, todas suas informações serão permanentemente perdidas.
         </p>
     </header>
 
-    <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+    <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+    class="button button-delete mt-4 w-1/2 te">
         Deletar conta
     </button>
 
@@ -49,20 +50,20 @@ new class extends Component {
                 Uma vez deletada todas suas informações serão perdidas, digite sua senha para continuar.
             </p>
 
-            <div>
+            <div class="form-field">
                 <label for="password">Digite sua senha</label>
-                <input wire:model="password" id="password" name="password" type="password" />
+                <input wire:model="password" id="password" name="password" type="password" class="input-style"/>
                 @error('password')
                     <p>{{ $message }}</p>
                 @enderror
             </div>
 
-            <div>
-                <button type="button" x-on:click="$dispatch('close')">
+            <div class="mt-4 flex flex-row gap-10 justify-center">
+                <button type="button" class="button bg-white text-black w-40" x-on:click="$dispatch('close')">
                     Cancelar
                 </button>
 
-                <button type="submit" x-on:click="$dispatch('close, 'confirm-user-deletion') wire:loading.attr="disabled">
+                <button type="submit" class="button button-delete w-40" x-on:click="$dispatch('close, 'confirm-user-deletion') wire:loading.attr="disabled">
                     Deletar conta
                 </button>
             </div>

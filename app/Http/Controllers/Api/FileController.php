@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Http\Services\FileService;
+use App\Models\Candidate;
+use App\Models\JobOffer;
 use Illuminate\Http\Request;
+
 class FileController extends Controller
 {
     private $service;
@@ -21,6 +24,7 @@ class FileController extends Controller
         }
         return response()->file($result['file_path']);
     }
+    
     public function setPhoto(Request $request)
     {
         $user_id = auth()->user()->id;
@@ -61,5 +65,43 @@ class FileController extends Controller
             ->header('Access-Control-Allow-Origin', '*')
             ->header('Access-Control-Allow-Methods', 'GET, OPTIONS')
             ->header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
+    }
+
+    public function downloadResume($job_offer_id, $candidate_id)
+    {
+        $companyUser = auth()->user();
+
+        $job = JobOffer::findOrFail($job_offer_id);
+
+        if ($job->company_id != $companyUser->company->id) {
+            abort(403, 'Você não tem permissão para acessar este arquivo.');
+        }
+
+        $candidate = Candidate::findOrFail($candidate_id);
+
+        $applied = $candidate->jobs()->where('job_offer_id', $job_offer_id)->exists();
+        if (!$applied) {
+            abort(403, 'Este candidato não se inscreveu nesta vaga.');
+        }
+
+        if (!$candidate->resume || !Storage::disk('private')->exists($candidate->resume)) {
+            abort(404, 'Currículo não encontrado.');
+        }
+
+        $extension = pathinfo($candidate->resume, PATHINFO_EXTENSION);
+        $downloadName = "curriculo_{$candidate->name}.{$extension}";
+
+        return Storage::disk('private')->download($candidate->resume, $downloadName);
+    }
+
+    public function viewResume($candidate_id)
+    {
+        $candidate = Candidate::findOrFail($candidate_id);
+        if (!$candidate->resume || !Storage::disk('private')->exists($candidate->resume)) {
+            abort(404, 'Currículo não encontrado.');
+        }
+        $extension = pathinfo($candidate->resume, PATHINFO_EXTENSION);
+        $downloadName = "curriculo_{$candidate->name}.{$extension}";
+        return Storage::disk('private')->download($candidate->resume, $downloadName);
     }
 }

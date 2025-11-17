@@ -39,13 +39,14 @@ class JobOfferService extends BaseService
     public function getOffers(string $company_id){
         return $this->job_repository->getOffers($company_id);
     }
-    
-    public function findForCompany(string $id){
-        return $this->job_repository->findForCompany($id);
-    }
+
 
     public function findForCandidate(string $id){
         return $this->job_repository->findForCandidate($id);
+    }
+
+    public function findForCompany(string $id){
+        return $this->job_repository->findForCompany($id);
     }
 
     public function update($job, $data){
@@ -65,5 +66,9 @@ class JobOfferService extends BaseService
 
     public function getByCity(string $query){
         return $this->job_repository->getByCity($query);
+    }
+
+    public function getCandidatesByOffer(string $job_offer_id){
+        return $this->repository->getCandidatesByOffer($job_offer_id);
     }
 }

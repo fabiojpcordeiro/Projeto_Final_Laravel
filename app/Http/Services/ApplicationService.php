@@ -6,11 +6,15 @@ use App\Http\Repositories\ApplicationRepository;
 use Illuminate\Support\Facades\Storage;
 
 class ApplicationService extends BaseService
-{
-
+{   
     public function __construct(ApplicationRepository $repository)
     {
         parent::__construct($repository);
+        $this->repository = $repository;
+    }
+
+    public function index(string $id){
+        return $this->repository->index($id);
     }
 
     public function show($id){

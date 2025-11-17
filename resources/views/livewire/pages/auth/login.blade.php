@@ -19,7 +19,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
         Session::regenerate();
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        $this->redirect(route('home'));
     }
 }; ?>
 
@@ -66,6 +66,10 @@ new #[Layout('layouts.guest')] class extends Component {
             <p class="mt-4">Esqueceu sua senha?
                 <a href="{{ route('password.request') }}" wire:navigate class="hover:underline hover:text-blue-500">
                     Clique aqui.</a>
+            </p>
+            <p class="mt-4">Ainda não tem uma conta?
+                <a href="{{ route('register') }}" wire:navigate class="hover:underline hover:text-blue-500">
+                    Cadastrar.</a>
             </p>
         </div>
     </div>

@@ -31,7 +31,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        $this->redirect(route('home', absolute: false), navigate: true);
     }
 }; ?>
 
@@ -39,7 +39,7 @@ new #[Layout('layouts.guest')] class extends Component {
     <div id="register" class="flex justify-center items-center text-center w-screen h-screen text-white font-semibold">
         <div class="p-14 justify-center bg-black opacity-80 h-[80%] w-[40%] rounded-xl">
 
-            <div class="flex h-20 -mt-5">
+            <div class="flex h-16">
                 <x-my_components.logo></x-my_components.logo>
             </div>
 
@@ -82,9 +82,15 @@ new #[Layout('layouts.guest')] class extends Component {
                         <span class="text-red-400 text-sm mt-1 text-center">{{ $message }}</span>
                     @enderror
                 </div>
-                
-                <x-my_components.primary_button type="submit"
-                    class="w-full mt-2">Registrar</x-my_components.primary_button>
+
+                <x-my_components.primary_button type="submit" class="w-full mt-2">Registrar
+                </x-my_components.primary_button>
+
+                <p class="mt-4">Já tem uma conta?
+                    <a class="text-xl" href="{{ route('login') }}" wire:navigate
+                        class="hover:underline hover:text-blue-500">
+                        Entrar.</a>
+                </p>
             </form>
         </div>
     </div>

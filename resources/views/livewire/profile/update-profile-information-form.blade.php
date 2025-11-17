@@ -63,7 +63,7 @@ new class extends Component {
 
 <section>
     <header>
-        <h2>
+        <h2 class="section-title">
             Meu perfil
         </h2>
         <p>
@@ -71,20 +71,22 @@ new class extends Component {
         </p>
     </header>
 
-    <form wire:submit.prevent="updateProfileInformation">
-        <div>
-            <label for="name">Nome</label>
-            <input wire:model="name" type="text" name="name" required>
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input wire:model="email" type="email" name="email" required>
-            @error('email')
-                <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
-            @enderror
-        </div>
-        <div>
-            <button type="submit">Salvar</button>
-        </div>
-    </form>
+    <div class="form-layout text-white font-semibold">
+        <form wire:submit.prevent="updateProfileInformation">
+            <div class="form-field">
+                <label for="name">Nome</label>
+                <input wire:model="name" type="text" name="name" class="input-style" required>
+            </div>
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input wire:model="email" type="email" name="email" class="input-style" required>
+                @error('email')
+                    <span class="text-red-400 text-sm mt-1 text-left">{{ $message }}</span>
+                @enderror
+            </div>
+            <div>
+                <button type="submit" class="simple-button mt-4 w-full">Salvar</button>   
+            </div>
+        </form>
+    </div>
 </section>

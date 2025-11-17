@@ -23,7 +23,7 @@ class FileService
 
     public function setPhoto(UploadedFile $photo, string $id)
     {
-        $candidate = Candidate::show($id);
+        $candidate = Candidate::findOrFail($id);
         if (!$candidate) return false;
         //delete older profile photo if it exists
         if ($candidate->profile_photo && Storage::disk('public')->exists($candidate->profile_photo)) {
@@ -39,10 +39,10 @@ class FileService
     {
         //Delete old resume if it exists
         $old_resume = $user->resume;
-        if (!empty($old_resume) && Storage::disk('public')->exists($old_resume)) {
-            Storage::disk('public')->delete($old_resume);
+        if (!empty($old_resume) && Storage::disk('private')->exists($old_resume)) {
+            Storage::disk('private')->delete($old_resume);
         }
-        $path = $file->store('resumes', 'public');
+        $path = $file->store('resumes', 'private');
         if (!$path) {
             return false;
         }

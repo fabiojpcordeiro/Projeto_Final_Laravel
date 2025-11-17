@@ -1,8 +1,8 @@
-<div class="border-2 border-blue-400 rounded-lg p-4 shadow-sm hover:shadow-xl transition">
+<div class="border-2 bg-slate-500 border-blue-400 rounded-lg p-3 shadow-sm hover:shadow-xl transition">
 
     <h3 class="text-xl font-bold">{{ $job->title }}</h3>
 
-    <div class="mt-4 flex flex-row justify-between">
+    <div class="mt-3 flex flex-row justify-between">
         <div class="text-lg text-white">
             <p><strong>Cidade:</strong> {{ $job->city }}</p>
             <p><strong>Setor:</strong> {{ $job->sector ?? '—' }}</p>
@@ -39,4 +39,5 @@
             </form>
         </div>
     </div>
+    <a href="{{ route('getCandidatesByOffer', $job->id) }}" class="simple-button">Ver candidatos</a>
 </div>

@@ -10,7 +10,7 @@
             </div>
         @else
             <div class="text-right">
-                <a href="{{ route('job-offers.create') }}" class="simple-button text-right">
+                <a href="{{ route('job-offers.create') }}" class="simple-button text-right mr-3">
                     <button type="button">Criar nova vaga</button>
                 </a>
             </div>
