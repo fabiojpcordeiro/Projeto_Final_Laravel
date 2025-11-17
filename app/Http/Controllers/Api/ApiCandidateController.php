@@ -76,7 +76,7 @@ class ApiCandidateController extends Controller
         return response()->json(['data' => 'Usuário atualizado com sucesso']);
     }
     public function show(Candidate $candidate){
-        return response()->json(['data'=> $this->service->show($candidate)]);
+        return response()->json(['data'=> $this->service->show($candidate->id)]);
     }
     public function destroy(Candidate $candidate){
         $this->service->destroy($candidate);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     protected $table = 'candidate_job';
-    protected $fillable = ['status', 'message', 'resume_path', 'candidate_id', 'job_offer_id'];
+    protected $fillable = ['status', 'message', 'resume', 'candidate_id', 'job_offer_id'];
 
     public function candidate(){
         return $this->belongsTo(Candidate::class, 'candidate_id', 'id');

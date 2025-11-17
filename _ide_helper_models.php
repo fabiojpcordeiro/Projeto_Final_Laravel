@@ -16,7 +16,7 @@ namespace App\Models{
  * @property int $id
  * @property string $status
  * @property string|null $message
- * @property string|null $resume_path
+ * @property string|null $resume
  * @property int $candidate_id
  * @property int $job_offer_id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -31,7 +31,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereJobOfferId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereMessage($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereResumePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereResume($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereUpdatedAt($value)
  */
