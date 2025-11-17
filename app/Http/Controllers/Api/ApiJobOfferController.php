@@ -22,7 +22,8 @@ class ApiJobOfferController extends Controller
     }
 
     public function show(JobOffer $job_offer){
-        return response()->json(['data' => $this->service->findForCandidate($job_offer->id)]);
+        $job = $this->service->findForCandidate($job_offer->id);
+        return new JobOfferResource($job);
     }
 
     public function search(Request $request){

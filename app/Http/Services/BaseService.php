@@ -4,7 +4,6 @@ namespace App\Http\Services;
 
 use App\Interfaces\Service;
 use App\Http\Repositories\BaseRepository;
-use DragonCode\Contracts\Cashier\Resources\Model;
 
 abstract class BaseService implements Service
 {
@@ -26,7 +25,7 @@ abstract class BaseService implements Service
     public function store(array $data){
         return $this->repository->store($data);
     }
-    public function destroy($object){
-        return $this->repository->destroy($object->id);
+    public function destroy($id){
+        return $this->repository->destroy($id);
     }
 }

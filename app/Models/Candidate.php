@@ -8,7 +8,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Candidate extends Authenticatable
 {
     use HasApiTokens;
-    
+
     protected $fillable = [
         'name',
         'email',
@@ -35,10 +35,12 @@ class Candidate extends Authenticatable
             ->withPivot('status')
             ->withTimestamps();
     }
-    public function city(){
+    public function city()
+    {
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
-    public function state(){
+    public function state()
+    {
         return $this->belongsTo(State::class, 'state_id', 'id');
     }
 
@@ -47,5 +49,7 @@ class Candidate extends Authenticatable
         'password' => 'hashed',
         'birthdate' => 'date:Y-m-d',
         'rating' => 'decimal:2',
+        'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y'
     ];
 }
